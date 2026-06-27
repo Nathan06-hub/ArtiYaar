@@ -1,24 +1,24 @@
-# 🛠️ ArtiYaar - Trouvez l'artisan qu'il vous faut
+#  ArtiYaar - Trouvez l'artisan qu'il vous faut
 
 **ArtiYaar** est une plateforme web moderne conçue pour connecter facilement les utilisateurs avec les meilleurs artisans locaux (menuisiers, couturiers, soudeurs, mécaniciens, etc.) de leur quartier. Le projet vise à soutenir l'artisanat local en offrant une visibilité numérique aux travailleurs manuels.
 
 ![Aperçu du Projet](img/logo.jpg)
 
-## ✨ Fonctionnalités Principales
+##  Fonctionnalités Principales
 
-*   **🔍 Recherche Avancée** : Trouvez des commerces et ateliers à proximité par nom, par catégorie métier, ou par la qualité de leur service (les mieux notés).
-*   **📍 Géolocalisation** : Option de tri "Plus proche" permettant de calculer la distance réelle entre l'utilisateur et les artisans.
-*   **📱 Design 100% Responsive & Mobile-First** : 
+*   ** Recherche Avancée** : Trouvez des commerces et ateliers à proximité par nom, par catégorie métier, ou par la qualité de leur service (les mieux notés).
+*   ** Géolocalisation** : Option de tri "Plus proche" permettant de calculer la distance réelle entre l'utilisateur et les artisans.
+*   ** Design 100% Responsive & Mobile-First** : 
     *   Interface parfaitement adaptée aux téléphones avec une **Bottom Navigation Bar** type application native.
     *   Vue bureau spacieuse et élégante.
-*   **🎨 UI/UX Moderne** :
+*   ** UI/UX Moderne** :
     *   Design épuré avec des palettes de couleurs harmonieuses (`var(--primary-color)`).
     *   Effets "Glassmorphism" et micro-animations fluides.
-*   **👤 Espace Artisan (Dashboard)** : 
+*   ** Espace Artisan (Dashboard)** : 
     *   Tableau de bord dédié aux artisans pour créer, modifier et gérer leurs "fiches" (ateliers).
     *   Gestion de profil et suivi des avis clients.
 
-## 🚀 Technologies Utilisées
+##  Technologies Utilisées
 
 Ce projet (branche `front`) est construit exclusivement avec des technologies web standards, sans framework lourd, pour garantir des performances optimales et un contrôle total sur le design :
 
@@ -27,9 +27,9 @@ Ce projet (branche `front`) est construit exclusivement avec des technologies we
 *   **JavaScript (Vanilla)** : Logique de l'application (`app.js`, `search.js`), gestion de l'état de l'utilisateur, tri dynamique et interactivité.
 *   **FontAwesome** : Bibliothèque d'icônes vectorielles.
 
-## 📂 Structure du Projet
+##  Structure du Projet
 
-```text
+  text
 Hackathon/
 ├── index.html           # Page d'accueil avec barre de recherche
 ├── services.html        # Liste des catégories et services
@@ -46,9 +46,9 @@ Hackathon/
 │   ├── app.js           # Navigation dynamique, auth state, utilitaires
 │   └── search.js        # Moteur de recherche et algorithme de tri
 └── img/                 # Ressources graphiques et logos
-```
 
-## 💻 Installation & Lancement
+
+##  Installation & Lancement
 
 Le projet étant un site web statique, il est très simple à déployer et à tester :
 
@@ -65,7 +65,7 @@ Le projet étant un site web statique, il est très simple à déployer et à te
     Il vous suffit d'ouvrir le fichier `index.html` dans n'importe quel navigateur web moderne.
     *Note : Pour une meilleure expérience (notamment pour tester la géolocalisation ou éviter les problèmes de CORS avec certains imports), il est recommandé d'utiliser une extension comme "Live Server" sur VS Code.*
 
-## 🤝 Contribution
+##  Contribution
 
 Si vous souhaitez contribuer à l'amélioration de l'interface ou ajouter de nouvelles fonctionnalités :
 
@@ -76,4 +76,4 @@ Si vous souhaitez contribuer à l'amélioration de l'interface ou ajouter de nou
 5.  Ouvrez une Pull Request
 
 ---
-*Conçu avec ❤️ pour soutenir l'artisanat local.*
+*Réalisée par logicode pour soutenir l'artisanat local.*
