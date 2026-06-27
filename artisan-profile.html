@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Artisan - Artiyaar</title>
+  <meta name="description" content="Consultez le profil de cet artisan sur Artiyaar — avis, localisation et réalisations.">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <a href="index.html" class="logo">
+        <img src="img/logo.jpg" alt="Artiyaar Logo" style="height: 100px; object-fit: contain;">
+      </a>
+      
+      <nav class="main-nav desktop-nav" style="display: flex; gap: 2rem; align-items: center;">
+        <a href="index.html" class="nav-link" style="font-weight: 500;">Accueil</a>
+        <a href="services.html" class="nav-link" style="font-weight: 500;">Services</a>
+        <a href="avis.html" class="nav-link" style="font-weight: 500;">Avis</a>
+        <a href="contact.html" class="nav-link" style="font-weight: 500;">Contact</a>
+      </nav>
+
+      <div class="nav-links desktop-nav" id="auth-links" style="display: flex; gap: 1rem; align-items: center;">
+        <!-- Injected by app.js -->
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- Back Link -->
+      <a href="services.html" class="back-link mt-3">
+        <i class="fas fa-arrow-left"></i> Retour aux résultats
+      </a>
+
+      <!-- Profile Content -->
+      <div class="profile-layout" id="profile-content">
+        <!-- Filled by JS -->
+        <div class="text-center text-muted" style="padding: 4rem; grid-column: 1 / -1;">
+          <div class="loader" style="margin: 0 auto 1rem;"></div>
+          Chargement du profil...
+        </div>
+      </div>
+
+      <!-- Reviews Section -->
+      <section class="reviews-section" id="reviews-section" style="display: none;">
+        <div class="reviews-header">
+          <h2><i class="fas fa-comments text-primary"></i> Avis des clients</h2>
+        </div>
+
+        <!-- Add Review (if logged in) -->
+        <div class="card glass-panel mb-3" id="review-form-container" style="display: none;">
+          <h3 class="mb-2">Laisser un avis <span class="badge badge-primary"><i class="fas fa-robot"></i> IA</span></h3>
+          <form id="review-form" onsubmit="ProfileUI.submitReview(event)">
+            <div class="form-group">
+              <label class="form-label" for="review-text">Votre commentaire</label>
+              <textarea id="review-text" class="form-control" rows="3" placeholder="Partagez votre expérience..." required oninput="ProfileUI.analyzeSentiment()"></textarea>
+            </div>
+            <div class="form-group" style="background: var(--primary-light); padding: 1rem; border-radius: var(--radius-md);">
+              <label class="form-label text-primary"><i class="fas fa-magic"></i> Note déduite par l'IA</label>
+              <div class="star-rating-input" id="star-rating-input" style="pointer-events: none; margin-bottom: 0.5rem;">
+                <i class="far fa-star" data-rating="1"></i>
+                <i class="far fa-star" data-rating="2"></i>
+                <i class="far fa-star" data-rating="3"></i>
+                <i class="far fa-star" data-rating="4"></i>
+                <i class="far fa-star" data-rating="5"></i>
+              </div>
+              <small class="text-muted" id="ai-status">Commencez à écrire, l'IA évaluera votre sentiment...</small>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submit-review-btn" disabled>
+              <i class="fas fa-paper-plane"></i> Publier
+            </button>
+          </form>
+        </div>
+
+        <!-- Reviews List -->
+        <div id="reviews-list">
+          <p class="text-muted text-center" style="padding: 2rem;">Aucun avis pour le moment.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <i class="fas fa-hammer text-primary"></i> <span>Artiyaar</span>
+          </a>
+          <p class="text-muted mt-1">Connecter les artisans, valoriser le savoir-faire local.</p>
+        </div>
+      </div>
+      <div class="footer-bottom text-muted">
+        &copy; 2026 Artiyaar — Hackathon Project
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- JS -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/geolocation.js"></script>
+  <script src="js/profile.js"></script>
+<nav class="mobile-bottom-nav">
+    <a href="index.html" class="bottom-nav-item ">
+      <i class="fas fa-home"></i>
+      <span>Accueil</span>
+    </a>
+    <a href="services.html" class="bottom-nav-item ">
+      <i class="fas fa-search"></i>
+      <span>Services</span>
+    </a>
+    <a href="avis.html" class="bottom-nav-item ">
+      <i class="fas fa-star"></i>
+      <span>Avis</span>
+    </a>
+    <a href="contact.html" class="bottom-nav-item ">
+      <i class="fas fa-envelope"></i>
+      <span>Contact</span>
+    </a>
+    <a href="login.html" class="bottom-nav-item   active" id="mobile-auth-link">
+      <i class="fas fa-user"></i>
+      <span>Profil</span>
+    </a>
+  </nav>
+</body>
+
+</html>

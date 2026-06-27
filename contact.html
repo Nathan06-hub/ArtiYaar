@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Artiyaar</title>
+  <meta name="description" content="Contactez l'équipe d'Artiyaar pour toute question ou suggestion.">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <a href="index.html" class="logo">
+        <img src="img/logo.jpg" alt="Artiyaar Logo" style="height: 100px; object-fit: contain;">
+      </a>
+      
+      <nav class="main-nav desktop-nav" style="display: flex; gap: 2rem; align-items: center;">
+        <a href="index.html" class="nav-link" style="font-weight: 500;">Accueil</a>
+        <a href="services.html" class="nav-link" style="font-weight: 500;">Services</a>
+        <a href="avis.html" class="nav-link" style="font-weight: 500;">Avis</a>
+        <a href="contact.html" class="nav-link" style="font-weight: 700; color: var(--primary-color);">Contact</a>
+      </nav>
+
+      <div class="nav-links desktop-nav" id="auth-links" style="display: flex; gap: 1rem; align-items: center;">
+        <!-- Injected by app.js -->
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section" style="padding: var(--spacing-xl) 0;">
+      <div class="container">
+        <h1 class="hero-title" style="font-size: 2.5rem; margin-bottom: 1rem;">
+          Nous <span class="text-primary">Contacter</span>
+        </h1>
+        <p class="hero-subtitle text-muted">Une question ? Un problème ? N'hésitez pas à nous écrire.</p>
+      </div>
+    </section>
+
+    <section class="container" style="padding: var(--spacing-2xl) 0;">
+      <div class="contact-grid">
+        
+        <!-- Contact Info -->
+        <div>
+          <h2 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Informations pratiques</h2>
+          <p class="text-muted" style="margin-bottom: 2rem; font-size: 1.1rem;">
+            Notre équipe est disponible pour vous aider à trouver l'artisan idéal ou pour vous accompagner dans la création de votre fiche artisan.
+          </p>
+          
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <h4 style="margin: 0; font-size: 1.1rem;">Adresse</h4>
+                <p class="text-muted" style="margin: 0;">Ouagadougou, Burkina Faso</p>
+              </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h4 style="margin: 0; font-size: 1.1rem;">Email</h4>
+                <p class="text-muted" style="margin: 0;">contact@artiyaar.com</p>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div>
+                <h4 style="margin: 0; font-size: 1.1rem;">Téléphone</h4>
+                <p class="text-muted" style="margin: 0;">+226 00 00 00 00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="card glass-panel" style="padding: 2.5rem;">
+          <h2 style="margin-bottom: 1.5rem;">Envoyez-nous un message</h2>
+          <form onsubmit="event.preventDefault(); alert('Message envoyé avec succès ! Nous vous recontacterons bientôt.');">
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+              <label class="form-label" for="name">Nom complet</label>
+              <input type="text" id="name" class="form-control" placeholder="Votre nom" required>
+            </div>
+            
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+              <label class="form-label" for="email">Email</label>
+              <input type="email" id="email" class="form-control" placeholder="votre@email.com" required>
+            </div>
+            
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+              <label class="form-label" for="subject">Sujet</label>
+              <input type="text" id="subject" class="form-control" placeholder="Objet de votre message" required>
+            </div>
+            
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+              <label class="form-label" for="message">Message</label>
+              <textarea id="message" class="form-control" rows="5" placeholder="Comment pouvons-nous vous aider ?" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+              <i class="fas fa-paper-plane"></i> Envoyer le message
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <img src="img/logo.jpg" alt="Artiyaar Logo" style="height: 80px; object-fit: contain;">
+          </a>
+          <p class="text-muted mt-1">Connecter les artisans, valoriser le savoir-faire local.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="text-muted">À propos</a>
+          <a href="#" class="text-muted">Contact</a>
+          <a href="#" class="text-muted">Mentions légales</a>
+        </div>
+      </div>
+      <div class="footer-bottom text-muted">
+        &copy; 2026 Artiyaar — Hackathon Project
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- JS -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+<nav class="mobile-bottom-nav">
+    <a href="index.html" class="bottom-nav-item ">
+      <i class="fas fa-home"></i>
+      <span>Accueil</span>
+    </a>
+    <a href="services.html" class="bottom-nav-item ">
+      <i class="fas fa-search"></i>
+      <span>Services</span>
+    </a>
+    <a href="avis.html" class="bottom-nav-item ">
+      <i class="fas fa-star"></i>
+      <span>Avis</span>
+    </a>
+    <a href="contact.html" class="bottom-nav-item active">
+      <i class="fas fa-envelope"></i>
+      <span>Contact</span>
+    </a>
+    <a href="login.html" class="bottom-nav-item   " id="mobile-auth-link">
+      <i class="fas fa-user"></i>
+      <span>Profil</span>
+    </a>
+  </nav>
+</body>
+
+</html>
