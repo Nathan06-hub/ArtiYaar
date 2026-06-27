@@ -1,6 +1,6 @@
-# ProxiArtisan - Backend API REST
+# Artiyaar - Backend API REST
 
-ProxiArtisan est une API REST puissante, moderne et performante développée en **Python** avec **FastAPI**, **PostgreSQL** et **SQLAlchemy**. Elle sert de moteur principal pour l'annuaire géolocalisé des commerces et services de proximité.
+Artiyaar est une API REST puissante, moderne et performante développée en **Python** avec **FastAPI**, **PostgreSQL** et **SQLAlchemy**. Elle sert de moteur principal pour l'annuaire géolocalisé des commerces et services de proximité (Artiyaar).
 
 Ce projet s'inscrit dans le cadre du défi hackathon *"Le numérique au service du développement local"* et implémente l'intégralité des fonctionnalités exigées, totalisant les **1700 points** du barème.
 
@@ -9,12 +9,11 @@ Ce projet s'inscrit dans le cadre du défi hackathon *"Le numérique au service 
 ## 👥 Informations du Groupe
 * **Nom du Groupe** : LogiCode
 * **Membres & Coordonnées** :
-  - Stéphane Nathanaël MARE - Développeur Backend  ([maresteph06@gmail.com](mailto:maresteph06@gmail.com))
+  - Stéphane Nathanaël MARE - Développeur Backend ([maresteph06@gmail.com](mailto:maresteph06@gmail.com))
   - Omaïmata OUEDRAOGO - Développeur Frontend ([omaiodg@gmail.com](mailto:omaiodg@gmail.com))
-  - Serge Landry WAONGO - Developpeur Frontend/ Lead ([sergewaongolandry@gmail.com](mailto:sergewaongolandry@gmail.com))
-  - Papus Aymerick KONATE -  ([papuskonate74@gmail.com](mailto:papuskonate74@gmail.com))
-  - Cedric NINkIEMA - Desingner UI/UX ([alalande@gmail.com](mailto:alalande@gmail.com)) 
-    
+  - Serge Landry WAONGO - Développeur Frontend / Lead ([sergewaongolandry@gmail.com](mailto:sergewaongolandry@gmail.com))
+  - Papus Aymerick KONATE - Membre ([papuskonate74@gmail.com](mailto:papuskonate74@gmail.com))
+  - Cedric NINKIEMA - Designer UI/UX ([alalande@gmail.com](mailto:alalande@gmail.com))
 ---
 
 ## 🏗️ Architecture Technique et Choix Technologiques
@@ -139,9 +138,15 @@ Démarrez le serveur ASGI Uvicorn en mode rechargement automatique :
 ```bash
 uvicorn app.main:app --reload
 ```
-Le serveur démarre sur [http://127.0.0.1:8000](http://127.0.0.1:8000).
-- La documentation Swagger interactive est disponible sur : [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-- La documentation ReDoc est disponible sur : [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
+Le serveur local démarre sur [http://127.0.0.1:8000](http://127.0.0.1:8000).
+- La documentation Swagger interactive locale est disponible sur : [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- La documentation ReDoc locale est disponible sur : [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
+
+### 🌍 Déploiement en Production (Render)
+L'API est hébergée et accessible publiquement :
+- **Base URL de production** : [https://artiyaar.onrender.com/](https://artiyaar.onrender.com/)
+- **Documentation Swagger interactive (Production)** : [https://artiyaar.onrender.com/docs](https://artiyaar.onrender.com/docs)
+- **Documentation ReDoc (Production)** : [https://artiyaar.onrender.com/redoc](https://artiyaar.onrender.com/redoc)
 
 ---
 
