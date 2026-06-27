@@ -484,16 +484,23 @@ main {
 
 .footer-content {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
   margin-bottom: var(--spacing-xl);
-  flex-wrap: wrap;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
+}
+
+.footer-brand .logo,
+.footer-links a:nth-child(2),
+.footer-links a:nth-child(3) {
+  display: none !important;
 }
 
 .footer-links {
   display: flex;
   gap: var(--spacing-lg);
+  justify-content: center;
 }
 
 .footer-links a:hover {
@@ -901,15 +908,6 @@ main {
     grid-template-columns: 1fr;
   }
 
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .footer-links {
-    justify-content: center;
-  }
-
   .results-header {
     flex-direction: column;
     align-items: flex-start;
@@ -954,12 +952,5 @@ main {
     .contact-detail {
       justify-content: center;
       text-align: left;
-    }
-    
-    /* Clean up footer for mobile */
-    .footer-brand .logo,
-    .footer-links a:nth-child(2),
-    .footer-links a:nth-child(3) {
-      display: none !important;
     }
   }
