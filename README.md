@@ -7,13 +7,13 @@ Ce projet s'inscrit dans le cadre du défi hackathon *"Le numérique au service 
 ---
 
 ## 👥 Informations du Groupe
-* **Nom du Groupe** : [LogiCode]
+* **Nom du Groupe** : LogiCode
 * **Membres & Coordonnées** :
-  - [Stéphane Nathanaël MARE] - Développeur Backend  ([maresteph06@gmail.com](mailto:maresteph06@gmail.com))
-  - [Omaïmata OUEDRAOGO] - Développeur Frontend ([omaiodg@gmail.com](mailto:omaiodg@gmail.com))
-  - [Serge Landry WAONGO] - Developpeur Frontend/ Lead ([sergewaongolandry@gmail.com](mailto:sergewaongolandry@gmail.com))
-  - [Papus Aymerick KONATE] -  ([papuskonate74@gmail.com](mailto:papuskonate74@gmail.com))
-  - [Cedric NINkIEMA] - Desingner UI/UX ([alalande@gmail.com](mailto:alalande@gmail.com)) 
+  - Stéphane Nathanaël MARE - Développeur Backend  ([maresteph06@gmail.com](mailto:maresteph06@gmail.com))
+  - Omaïmata OUEDRAOGO - Développeur Frontend ([omaiodg@gmail.com](mailto:omaiodg@gmail.com))
+  - Serge Landry WAONGO - Developpeur Frontend/ Lead ([sergewaongolandry@gmail.com](mailto:sergewaongolandry@gmail.com))
+  - Papus Aymerick KONATE -  ([papuskonate74@gmail.com](mailto:papuskonate74@gmail.com))
+  - Cedric NINkIEMA - Desingner UI/UX ([alalande@gmail.com](mailto:alalande@gmail.com)) 
     
 ---
 
