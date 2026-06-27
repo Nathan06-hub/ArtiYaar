@@ -49,50 +49,8 @@
     </section>
 
     <section class="container" style="padding: var(--spacing-2xl) 0;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;">
-        
-        <!-- Dummy Review 1 -->
-        <div class="card glass-panel" style="padding: 2rem;">
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-            <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--primary-light); display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-weight: bold; font-size: 1.2rem;">S</div>
-            <div>
-              <h3 style="margin: 0; font-size: 1.1rem;">Sophie M.</h3>
-              <div style="color: var(--warning); font-size: 0.9rem;">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-              </div>
-            </div>
-          </div>
-          <p class="text-muted">"Un service impeccable ! J'ai trouvé un électricien en 5 minutes. Travail rapide et soigné, je recommande vivement Artiyaar."</p>
-        </div>
-
-        <!-- Dummy Review 2 -->
-        <div class="card glass-panel" style="padding: 2rem;">
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-            <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--primary-light); display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-weight: bold; font-size: 1.2rem;">A</div>
-            <div>
-              <h3 style="margin: 0; font-size: 1.1rem;">Amadou K.</h3>
-              <div style="color: var(--warning); font-size: 0.9rem;">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-              </div>
-            </div>
-          </div>
-          <p class="text-muted">"Super concept, cela valorise vraiment les artisans de notre quartier. La plateforme est très facile à utiliser."</p>
-        </div>
-
-        <!-- Dummy Review 3 -->
-        <div class="card glass-panel" style="padding: 2rem;">
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-            <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--primary-light); display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-weight: bold; font-size: 1.2rem;">M</div>
-            <div>
-              <h3 style="margin: 0; font-size: 1.1rem;">Mariam T.</h3>
-              <div style="color: var(--warning); font-size: 0.9rem;">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-              </div>
-            </div>
-          </div>
-          <p class="text-muted">"J'ai fait réparer ma plomberie le jour même. Artisan très professionnel et courtois. Merci Artiyaar !"</p>
-        </div>
-
+      <div id="reviews-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;">
+        <!-- Les avis réels de la base de données seront injectés ici par reviews.js -->
       </div>
     </section>
   </main>
@@ -125,6 +83,7 @@
   <!-- JS -->
   <script src="js/storage.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/reviews.js"></script>
 <nav class="mobile-bottom-nav">
     <a href="index.html" class="bottom-nav-item ">
       <i class="fas fa-home"></i>

@@ -12,10 +12,33 @@ const SearchUI = {
     this.allArtisans = [];
     this.filteredArtisans = [];
     
-    await this.applyFilters();
+    // 1. Charger tous les artisans depuis la base de données au démarrage
+    try {
+      const all = await window.App.api("/api/businesses");
+      this.allArtisans = all.map(b => ({
+        id: b.id,
+        name: b.name,
+        category: b.category,
+        address: b.address,
+        description: b.description,
+        rating: b.average_rating || 0,
+        reviewCount: b.reviews_count || 0,
+        photos: b.image_urls || [],
+        lat: b.latitude,
+        lng: b.longitude
+      }));
+      this.filteredArtisans = [...this.allArtisans];
+    } catch (e) {
+      console.error("Erreur au chargement des artisans : ", e);
+    }
+    
+    // 2. Construire les filtres et statistiques
     this.buildCategoryFilters();
     this.updateStats();
-    this.getUserLocation();
+    this.render();
+    if (document.getElementById('artisan-results')) {
+      this.getUserLocation();
+    }
 
     // Bind enter key on search
     const searchInput = document.getElementById('search-input');
@@ -26,23 +49,13 @@ const SearchUI = {
     }
   },
 
-  async buildCategoryFilters() {
+  buildCategoryFilters() {
     const container = document.getElementById('category-filters');
     if (!container) return;
 
     const categories = window.App.config.categories;
-    
-    // Charger tous les artisans du backend une fois pour compter les catégories
-    try {
-      const all = await window.App.api("/api/businesses");
-      this.allArtisans = all.map(b => ({
-        id: b.id, name: b.name, category: b.category, description: b.description,
-        rating: b.average_rating || 0, reviewCount: b.reviews_count || 0,
-        photos: b.image_urls || [], lat: b.latitude, lng: b.longitude
-      }));
-    } catch(e) { console.error(e); }
 
-    // Keep the "Tous" button already in HTML, add category buttons
+    // Ajouter les boutons de catégories dynamiquement d'après les artisans présents
     categories.forEach(cat => {
       const count = this.allArtisans.filter(a => a.category === cat).length;
       if (count > 0) {
@@ -88,6 +101,7 @@ const SearchUI = {
         id: b.id,
         name: b.name,
         category: b.category,
+        address: b.address,
         description: b.description,
         rating: b.average_rating || 0,
         reviewCount: b.reviews_count || 0,
@@ -161,13 +175,30 @@ const SearchUI = {
 
   updateStats() {
     const artisans = this.allArtisans;
-    document.getElementById('stat-artisans').textContent = artisans.length;
     
+    // 1. Nombre d'artisans
+    const statArtisans = document.getElementById('stat-artisans');
+    if (statArtisans) statArtisans.textContent = artisans.length;
+    
+    // 2. Nombre de métiers (catégories uniques représentées)
     const uniqueCategories = new Set(artisans.map(a => a.category));
-    document.getElementById('stat-categories').textContent = uniqueCategories.size;
+    const statCategories = document.getElementById('stat-categories');
+    if (statCategories) statCategories.textContent = uniqueCategories.size;
     
+    // 3. Nombre de villes (extrait le dernier mot/ville de l'adresse de l'artisan)
+    const cities = artisans.map(a => {
+      if (!a.address) return null;
+      const parts = a.address.split(',');
+      return parts[parts.length - 1].trim();
+    }).filter(Boolean);
+    const uniqueCities = new Set(cities);
+    const statCities = document.getElementById('stat-cities');
+    if (statCities) statCities.textContent = uniqueCities.size || 1;
+    
+    // 4. Nombre total d'avis cumulés
     const totalReviews = artisans.reduce((sum, a) => sum + (a.reviewCount || 0), 0);
-    document.getElementById('stat-reviews').textContent = totalReviews;
+    const statReviews = document.getElementById('stat-reviews');
+    if (statReviews) statReviews.textContent = totalReviews;
   },
 
   updateResultsTitle() {

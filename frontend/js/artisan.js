@@ -23,7 +23,7 @@ const DashboardUI = {
     this.setupDragAndDrop();
   },
   
-  showSection(sectionId) {
+  showSection(sectionId, isEdit = false) {
     // Hide all sections
     document.querySelectorAll('.dashboard-section').forEach(el => {
       el.classList.add('hidden');
@@ -44,8 +44,8 @@ const DashboardUI = {
       document.getElementById('section-add-fiche').classList.remove('hidden');
       document.querySelector('.sidebar-nav a:nth-child(2)').classList.add('active');
       
-      // Reset form if it's new
-      if (!document.getElementById('fiche-id').value) {
+      // Réinitialiser le formulaire si on n'est pas en cours d'édition
+      if (!isEdit) {
         this.resetForm();
       }
     }
@@ -146,6 +146,7 @@ const DashboardUI = {
     document.getElementById('fiche-form').reset();
     document.getElementById('fiche-id').value = '';
     document.getElementById('form-fiche-title').textContent = 'Nouvelle Fiche Artisan';
+    document.getElementById('fiche-address').value = '';
     document.getElementById('fiche-lat').value = '';
     document.getElementById('fiche-lng').value = '';
     document.getElementById('fiche-phone').value = '';
@@ -178,6 +179,7 @@ const DashboardUI = {
     const id = document.getElementById('fiche-id').value;
     const name = document.getElementById('fiche-name').value;
     const category = document.getElementById('fiche-category').value;
+    const address = document.getElementById('fiche-address').value;
     const phone = document.getElementById('fiche-phone').value;
     const desc = document.getElementById('fiche-desc').value;
     const lat = document.getElementById('fiche-lat').value;
@@ -191,6 +193,7 @@ const DashboardUI = {
     const payload = {
       name: name,
       category: category,
+      address: address,
       phone: phone,
       description: desc,
       latitude: parseFloat(lat),
@@ -226,6 +229,7 @@ const DashboardUI = {
       document.getElementById('fiche-id').value = fiche.id;
       document.getElementById('fiche-name').value = fiche.name;
       document.getElementById('fiche-category').value = fiche.category;
+      document.getElementById('fiche-address').value = fiche.address || '';
       document.getElementById('fiche-phone').value = fiche.phone || '';
       document.getElementById('fiche-desc').value = fiche.description || '';
       document.getElementById('fiche-lat').value = fiche.latitude;
@@ -238,7 +242,7 @@ const DashboardUI = {
       gpsStatus.style.color = "var(--success)";
       
       window.Media.setPhotos(fiche.image_urls || []);
-      this.showSection('add-fiche');
+      this.showSection('add-fiche', true);
     } catch (e) {
       window.App.showMessage("Erreur de récupération de la fiche : " + e.message, 'error');
     }
