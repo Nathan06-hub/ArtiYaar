@@ -38,7 +38,18 @@ const App = {
     const res = await fetch(`${this.config.apiUrl}${path}`, { ...opts, headers });
     if (!res.ok) {
       const err = await res.json().catch(() => ({ detail: "Erreur réseau" }));
-      throw new Error(err.detail || "Erreur inconnue");
+      let msg = "Erreur inconnue";
+      if (err.detail) {
+        if (Array.isArray(err.detail)) {
+          msg = err.detail.map(d => {
+            // Nettoyage simple des messages longs (ex: "Value error, ...")
+            return d.msg.replace("Value error, ", "");
+          }).join(", ");
+        } else {
+          msg = err.detail;
+        }
+      }
+      throw new Error(msg);
     }
     if (res.status === 204) return null;
     return res.json();

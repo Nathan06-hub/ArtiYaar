@@ -132,6 +132,11 @@ const AuthUI = {
       }
     }
     
+    // Mapping requis pour la validation Pydantic (client -> citoyen)
+    if (role === 'client') {
+      role = 'citoyen';
+    }
+    
     const errorEl = document.getElementById('register-error');
     
     const result = await Auth.register({ name, email, password, role });
