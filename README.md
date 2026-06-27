@@ -75,11 +75,11 @@ erDiagram
     USERS {
         int id PK
         string name
-        string email UNIQUE
+        string email
         string hashed_password
         string role
         string reset_question
-        string reset_answer_hashed
+        string reset_answer
     }
     BUSINESSES {
         int id PK
@@ -93,7 +93,7 @@ erDiagram
         string phone
         string hours
         boolean published
-        json image_urls
+        string image_urls
     }
     REVIEWS {
         int id PK
@@ -105,8 +105,8 @@ erDiagram
         datetime created_at
     }
 
-    USERS ||--o{ BUSINESSES : "possède (1:N)"
-    BUSINESSES ||--o{ REVIEWS : "reçoit (1:N)"
+    USERS ||--o{ BUSINESSES : possede
+    BUSINESSES ||--o{ REVIEWS : recoit
 ```
 
 ---
