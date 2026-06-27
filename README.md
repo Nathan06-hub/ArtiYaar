@@ -29,7 +29,7 @@ Ce projet (branche `front`) est construit exclusivement avec des technologies we
 
 ##  Structure du Projet
 
-  text
+```text
 Hackathon/
 ├── index.html           # Page d'accueil avec barre de recherche
 ├── services.html        # Liste des catégories et services
@@ -46,7 +46,7 @@ Hackathon/
 │   ├── app.js           # Navigation dynamique, auth state, utilitaires
 │   └── search.js        # Moteur de recherche et algorithme de tri
 └── img/                 # Ressources graphiques et logos
-
+```
 
 ##  Installation & Lancement
 

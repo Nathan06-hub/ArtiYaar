@@ -937,4 +937,29 @@ main {
       grid-template-columns: 1fr;
       gap: 2rem;
     }
+    
+    .contact-info {
+      text-align: center;
+      padding: 0 1rem;
+    }
+    
+    .contact-info-title {
+      font-size: 1.5rem !important;
+    }
+    
+    .contact-info-desc {
+      font-size: 0.95rem !important;
+    }
+    
+    .contact-detail {
+      justify-content: center;
+      text-align: left;
+    }
+    
+    /* Clean up footer for mobile */
+    .footer-brand .logo,
+    .footer-links a:nth-child(2),
+    .footer-links a:nth-child(3) {
+      display: none !important;
+    }
   }

@@ -29,6 +29,9 @@ const App = {
   init() {
     console.log(`${this.config.appName} initialized`);
     
+    // Show splash screen on first launch in the session
+    this.showSplashScreen();
+    
     // Initialize storage & demo data
     if (window.Storage) {
       window.Storage.initDemoData();
@@ -36,6 +39,42 @@ const App = {
     }
     
     this.updateNavigation();
+  },
+
+  /**
+   * Show a beautiful splash screen on launch
+   */
+  showSplashScreen() {
+    // Only show once per session
+    if (sessionStorage.getItem('splash_shown')) {
+      return;
+    }
+
+    const splash = document.createElement('div');
+    splash.className = 'splash-screen';
+    splash.id = 'splash-screen';
+    splash.innerHTML = `
+      <div class="splash-content">
+        <div class="splash-logo-wrapper">
+          <img src="img/logo.jpg" alt="Artiyaar" class="splash-logo">
+          <div class="splash-loader-circle"></div>
+        </div>
+        <div class="splash-text">Artiyaar</div>
+      </div>
+    `;
+
+    document.body.appendChild(splash);
+    document.body.style.overflow = 'hidden';
+
+    // Fade out and remove
+    setTimeout(() => {
+      splash.classList.add('fade-out');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        splash.remove();
+      }, 400);
+      sessionStorage.setItem('splash_shown', 'true');
+    }, 1500);
   },
 
   /**

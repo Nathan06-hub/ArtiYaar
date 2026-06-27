@@ -24,7 +24,7 @@
       <a href="index.html" class="logo">
         <img src="img/logo.jpg" alt="Artiyaar Logo" style="height: 100px; object-fit: contain;">
       </a>
-      
+
       <nav class="main-nav desktop-nav" style="display: flex; gap: 2rem; align-items: center;">
         <a href="index.html" class="nav-link" style="font-weight: 500;">Accueil</a>
         <a href="services.html" class="nav-link" style="font-weight: 500;">Services</a>
@@ -50,17 +50,19 @@
 
     <section class="container" style="padding: var(--spacing-2xl) 0;">
       <div class="contact-grid">
-        
+
         <!-- Contact Info -->
-        <div>
-          <h2 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Informations pratiques</h2>
-          <p class="text-muted" style="margin-bottom: 2rem; font-size: 1.1rem;">
-            Notre équipe est disponible pour vous aider à trouver l'artisan idéal ou pour vous accompagner dans la création de votre fiche artisan.
+        <div class="contact-info">
+          <h2 class="contact-info-title" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Informations pratiques</h2>
+          <p class="contact-info-desc text-muted" style="margin-bottom: 2rem; font-size: 1.1rem;">
+            Notre équipe est disponible pour vous aider à trouver l'artisan idéal ou pour vous accompagner dans la
+            création de votre fiche artisan.
           </p>
-          
-          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-            <div style="display: flex; align-items: center; gap: 1rem;">
-              <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+
+          <div class="contact-details-container" style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <div class="contact-detail" style="display: flex; align-items: center; gap: 1rem;">
+              <div
+                style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
                 <i class="fas fa-map-marker-alt"></i>
               </div>
               <div>
@@ -68,9 +70,10 @@
                 <p class="text-muted" style="margin: 0;">Ouagadougou, Burkina Faso</p>
               </div>
             </div>
-            
-            <div style="display: flex; align-items: center; gap: 1rem;">
-              <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+
+            <div class="contact-detail" style="display: flex; align-items: center; gap: 1rem;">
+              <div
+                style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
                 <i class="fas fa-envelope"></i>
               </div>
               <div>
@@ -79,8 +82,9 @@
               </div>
             </div>
 
-            <div style="display: flex; align-items: center; gap: 1rem;">
-              <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+            <div class="contact-detail" style="display: flex; align-items: center; gap: 1rem;">
+              <div
+                style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
                 <i class="fas fa-phone-alt"></i>
               </div>
               <div>
@@ -94,27 +98,29 @@
         <!-- Contact Form -->
         <div class="card glass-panel" style="padding: 2.5rem;">
           <h2 style="margin-bottom: 1.5rem;">Envoyez-nous un message</h2>
-          <form onsubmit="event.preventDefault(); alert('Message envoyé avec succès ! Nous vous recontacterons bientôt.');">
+          <form
+            onsubmit="event.preventDefault(); alert('Message envoyé avec succès ! Nous vous recontacterons bientôt.');">
             <div class="form-group" style="margin-bottom: 1.5rem;">
               <label class="form-label" for="name">Nom complet</label>
               <input type="text" id="name" class="form-control" placeholder="Votre nom" required>
             </div>
-            
+
             <div class="form-group" style="margin-bottom: 1.5rem;">
               <label class="form-label" for="email">Email</label>
               <input type="email" id="email" class="form-control" placeholder="votre@email.com" required>
             </div>
-            
+
             <div class="form-group" style="margin-bottom: 1.5rem;">
               <label class="form-label" for="subject">Sujet</label>
               <input type="text" id="subject" class="form-control" placeholder="Objet de votre message" required>
             </div>
-            
+
             <div class="form-group" style="margin-bottom: 1.5rem;">
               <label class="form-label" for="message">Message</label>
-              <textarea id="message" class="form-control" rows="5" placeholder="Comment pouvons-nous vous aider ?" required></textarea>
+              <textarea id="message" class="form-control" rows="5" placeholder="Comment pouvons-nous vous aider ?"
+                required></textarea>
             </div>
-            
+
             <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
               <i class="fas fa-paper-plane"></i> Envoyer le message
             </button>
@@ -142,7 +148,7 @@
         </div>
       </div>
       <div class="footer-bottom text-muted">
-        &copy; 2026 Artiyaar — Hackathon Project
+        &copy; 2026 Artiyaar by LogiCode
       </div>
     </div>
   </footer>
@@ -153,7 +159,7 @@
   <!-- JS -->
   <script src="js/storage.js"></script>
   <script src="js/app.js"></script>
-<nav class="mobile-bottom-nav">
+  <nav class="mobile-bottom-nav">
     <a href="index.html" class="bottom-nav-item ">
       <i class="fas fa-home"></i>
       <span>Accueil</span>
