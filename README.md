@@ -20,7 +20,7 @@ Ce projet a été réalisé par l'équipe **LogiCode** dans le cadre du Hackatho
 *   **Stéphane Nathanaël MARE** : Développeur Backend (maresteph06@gmail.com)
 *   **Omaïmata OUEDRAOGO** : Développeuse Frontend (omaiodg@gmail.com)
 *   **Papus Aymerick KONATE** : Concepteur & Rédacteur (papuskonate74@gmail.com)
-*   **Cedric NINKIEMA** : Designer UI/UX (alalande@gmail.com)
+*   **Cedric NINKIEMA** : Designer UI/UX (alande@gmail.com)
 
 ---
 
