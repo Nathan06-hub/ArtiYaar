@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Profil - Artiyaar</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <a href="index.html" class="logo">
+        <img src="img/logo.jpg" alt="Artiyaar Logo" style="height: 100px; object-fit: contain;">
+      </a>
+      <nav class="main-nav desktop-nav" style="display: flex; gap: 2rem; align-items: center;">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="avis.html" class="nav-link">Avis</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="nav-links desktop-nav" id="auth-links" style="display: flex; gap: 1rem; align-items: center;"></div>
+    </div>
+  </header>
+
+  <main class="container" style="padding: var(--spacing-2xl) var(--spacing-md); max-width: 800px; margin: 0 auto; flex: 1;">
+    <h1 style="margin-bottom: 2rem;"><i class="fas fa-id-card text-primary"></i> Espace <span class="text-primary">Profil</span></h1>
+    
+    <div class="card glass-panel" style="padding: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.5rem;">
+      <div style="display: flex; align-items: center; gap: 1.5rem;">
+        <div id="user-avatar" style="width: 70px; height: 70px; border-radius: 50%; background: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold;">
+          C
+        </div>
+        <div>
+          <h2 id="client-name" style="margin: 0; font-size: 1.6rem;">Chargement...</h2>
+          <span class="badge badge-primary" style="font-size: 0.8rem; margin-top: 0.3rem; display: inline-block;">Citoyen / Client</span>
+        </div>
+      </div>
+      
+      <div style="border-top: 1px solid var(--border-color); padding-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+        <div style="display: flex; justify-content: space-between;">
+          <span class="text-muted">Adresse Email</span>
+          <span id="client-email" style="font-weight: 500;">...</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span class="text-muted">Type de compte</span>
+          <span style="font-weight: 500;">Citoyen (Utilisateur de l'annuaire)</span>
+        </div>
+      </div>
+      
+      <button onclick="App.logout()" class="btn btn-outline" style="width: 100%; border-color: var(--danger); color: var(--danger); font-weight: bold; margin-top: 1rem;">
+        <i class="fas fa-sign-out-alt"></i> Se déconnecter de l'application
+      </button>
+    </div>
+
+    <!-- Mes avis -->
+    <h2 style="margin-bottom: 1.5rem;"><i class="fas fa-comments text-primary"></i> Mes avis <span class="text-primary">publiés</span></h2>
+    <div id="my-reviews-list" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+      <div class="text-center text-muted" style="padding: 2rem;">
+        Chargement de vos avis...
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; width: 100%;">
+        <p class="text-muted" style="margin: 0;">Connecter les artisans, valoriser le savoir-faire local.</p>
+        <div class="footer-links" style="display: flex; justify-content: center; gap: 1.5rem;">
+          <a href="#" class="text-muted">À propos</a>
+        </div>
+      </div>
+      <div class="footer-bottom text-muted">
+        &copy; 2026 Artiyaar by LogiCode
+      </div>
+    </div>
+  </footer>
+
+  <nav class="mobile-bottom-nav">
+    <a href="index.html" class="bottom-nav-item">
+      <i class="fas fa-home"></i>
+      <span>Accueil</span>
+    </a>
+    <a href="services.html" class="bottom-nav-item">
+      <i class="fas fa-search"></i>
+      <span>Services</span>
+    </a>
+    <a href="avis.html" class="bottom-nav-item">
+      <i class="fas fa-star"></i>
+      <span>Avis</span>
+    </a>
+    <a href="contact.html" class="bottom-nav-item">
+      <i class="fas fa-envelope"></i>
+      <span>Contact</span>
+    </a>
+    <a href="profile.html" class="bottom-nav-item active" id="mobile-auth-link">
+      <i class="fas fa-user"></i>
+      <span>Profil</span>
+    </a>
+  </nav>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = window.Storage.getCurrentUser();
+      if (!user) {
+        window.location.href = 'login.html';
+        return;
+      }
+      
+      // Setup elements
+      document.getElementById('client-name').textContent = user.name;
+      document.getElementById('client-email').textContent = user.email;
+      document.getElementById('user-avatar').textContent = user.name.charAt(0).toUpperCase();
+      
+      // Load user reviews dynamically by scanning all reviews in businesses
+      const reviewsList = document.getElementById('my-reviews-list');
+      try {
+        const businesses = await window.App.api('/api/businesses');
+        const userReviews = [];
+        
+        businesses.forEach(b => {
+          if (b.reviews) {
+            b.reviews.forEach(r => {
+              if (r.author_name === user.name) {
+                userReviews.push({
+                  ...r,
+                  businessName: b.name,
+                  businessId: b.id
+                });
+              }
+            });
+          }
+        });
+        
+        if (userReviews.length === 0) {
+          reviewsList.innerHTML = `
+            <div class="card glass-panel text-center text-muted" style="padding: 2.5rem;">
+              <i class="fas fa-comment-slash" style="font-size: 2.5rem; opacity: 0.3; margin-bottom: 1rem;"></i>
+              <p>Vous n'avez pas encore publié d'avis sur la plateforme.</p>
+            </div>
+          `;
+          return;
+        }
+        
+        let html = '';
+        userReviews.forEach(r => {
+          const starsHtml = window.App.renderStars(r.rating);
+          const dateStr = new Date(r.created_at).toLocaleDateString('fr-FR', {
+            day: 'numeric', month: 'short', year: 'numeric'
+          });
+          
+          let sentimentClass = 'badge-muted';
+          let sentimentText = 'Neutre';
+          if (r.sentiment_score > 0.6) {
+            sentimentClass = 'badge-success';
+            sentimentText = 'Positif';
+          } else if (r.sentiment_score < 0.4) {
+            sentimentClass = 'badge-danger';
+            sentimentText = 'Négatif';
+          }
+          
+          html += `
+            <div class="card glass-panel" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                  <span style="font-weight: 500; font-size: 0.9rem;" class="text-muted">Avis publié le ${dateStr}</span>
+                  <span class="badge ${sentimentClass}" style="font-size: 0.75rem;"><i class="fas fa-robot"></i> IA: ${sentimentText}</span>
+                </div>
+                <div style="color: var(--warning); margin-bottom: 0.5rem; font-size: 0.85rem;">
+                  ${starsHtml}
+                </div>
+                <p class="text-muted" style="font-style: italic; margin: 0;">"${r.comment}"</p>
+              </div>
+              <div style="margin-top: 1rem; text-align: right; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.6rem;">
+                <a href="artisan-profile.html?id=${r.businessId}" class="text-primary" style="font-size: 0.8rem; font-weight: 500;">
+                  Sur la vitrine : ${r.businessName} <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+                </a>
+              </div>
+            </div>
+          `;
+        });
+        reviewsList.innerHTML = html;
+        
+      } catch (e) {
+        reviewsList.innerHTML = `<div class="card glass-panel text-center text-danger" style="padding: 2.5rem;">Erreur de chargement : ${e.message}</div>`;
+      }
+    });
+  </script>
+</body>
+</html>

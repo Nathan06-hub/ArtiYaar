@@ -69,9 +69,10 @@ const AuthUI = {
       this.switchTab('register');
     }
     
-    // Redirect if already logged in
+    // Redirection automatique si déjà connecté
     if (window.App.state.currentUser) {
-      window.location.href = 'dashboard.html';
+      const isArtisan = window.App.state.currentUser.role === 'artisan';
+      window.location.href = isArtisan ? 'dashboard.html' : 'profile.html';
     }
   },
 

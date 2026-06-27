@@ -71,10 +71,12 @@ main {
 
 .artisan-card .card-img {
   width: 100%;
+  max-width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
-  margin: calc(var(--spacing-lg) * -1) calc(var(--spacing-lg) * -1) var(--spacing-md) calc(var(--spacing-lg) * -1);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-md);
+  align-self: center;
 }
 
 .artisan-card-header {
@@ -836,6 +838,28 @@ main {
     border-right: none;
     border-bottom: 1px solid var(--border-color);
   }
+
+  .dashboard-content {
+    padding: var(--spacing-lg) var(--spacing-md) !important;
+  }
+
+  .artisan-grid {
+    justify-content: center !important;
+    justify-items: center !important;
+  }
+  
+  .dashboard-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .dashboard-header h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
   
   .sidebar-nav {
     display: none; /* Hidden on mobile as it's replaced by bottom nav */
@@ -907,9 +931,39 @@ main {
   align-items: flex-start;
 }
 
+.contact-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-info p.text-muted {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
 @media (max-width: 768px) {
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+  
+  .contact-info {
+    text-align: center;
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .contact-info h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .contact-info p.text-muted {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contact-info > div > div[style*="display: flex"] {
+    justify-content: center;
   }
 }

@@ -57,6 +57,7 @@ const App = {
    * Initialize the application
    */
   init() {
+    this.showSplashScreen();
     console.log(`${this.config.appName} initialized`);
     
     // Initialize storage & demo data
@@ -66,6 +67,71 @@ const App = {
     }
     
     this.updateNavigation();
+  },
+
+  /**
+   * Affichage d'un écran de chargement (Splash Screen) avec pulsation du logo
+   */
+  showSplashScreen() {
+    // N'afficher le splash screen qu'une seule fois par session
+    if (sessionStorage.getItem('has_seen_splash')) {
+      return;
+    }
+    sessionStorage.setItem('has_seen_splash', 'true');
+
+    // Injecter les animations CSS si non présentes
+    if (!document.getElementById('splash-keyframes')) {
+      const style = document.createElement('style');
+      style.id = 'splash-keyframes';
+      style.textContent = `
+        @keyframes splash-pulse {
+          0%, 100% { transform: scale(0.95); opacity: 0.85; }
+          50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 6px 15px rgba(56, 142, 60, 0.15)); }
+        }
+        @keyframes splash-dot {
+          0%, 100% { transform: scale(0.6); opacity: 0.4; }
+          50% { transform: scale(1.2); opacity: 1; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    
+    const splash = document.createElement('div');
+    splash.id = 'app-splash-screen';
+    splash.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100000;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    `;
+    
+    splash.innerHTML = `
+      <div style="text-align: center;">
+        <img src="img/logo.jpg" alt="Artiyaar Logo" style="height: 110px; object-fit: contain; animation: splash-pulse 1.6s ease-in-out infinite; margin-bottom: 1rem;">
+        <div style="display: flex; gap: 0.4rem; justify-content: center; align-items: center; margin-top: 0.5rem;">
+          <span style="width: 8px; height: 8px; border-radius: 50%; background-color: #388e3c; animation: splash-dot 1.2s infinite 0s;"></span>
+          <span style="width: 8px; height: 8px; border-radius: 50%; background-color: #388e3c; animation: splash-dot 1.2s infinite 0.2s;"></span>
+          <span style="width: 8px; height: 8px; border-radius: 50%; background-color: #388e3c; animation: splash-dot 1.2s infinite 0.4s;"></span>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(splash);
+    
+    // Dissoudre l'overlay après 1,2s
+    setTimeout(() => {
+      splash.style.opacity = '0';
+      splash.style.pointerEvents = 'none';
+      setTimeout(() => splash.remove(), 400);
+    }, 1200);
   },
 
   /**
@@ -81,14 +147,15 @@ const App = {
       
       if (authLinks) {
         authLinks.innerHTML = `
-          ${isArtisan ? '<a href="dashboard.html" class="nav-link">Dashboard</a>' : ''}
-          <span class="nav-link text-muted" style="margin-right: 1rem;"><i class="fas fa-user"></i> ${this.state.currentUser.name}</span>
+          <a href="${isArtisan ? 'dashboard.html' : 'profile.html'}" class="nav-link" style="margin-right: 1rem;">
+            <i class="fas fa-user-circle"></i> Mon Profil
+          </a>
           <button onclick="App.logout()" class="btn btn-outline" style="padding: 0.5rem 1rem;">Déconnexion</button>
         `;
       }
       
       if (mobileAuthLink) {
-        mobileAuthLink.href = isArtisan ? 'dashboard.html' : '#';
+        mobileAuthLink.href = isArtisan ? 'dashboard.html' : 'profile.html';
       }
     } else {
       // User is not logged in
