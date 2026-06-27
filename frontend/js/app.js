@@ -7,16 +7,10 @@ const App = {
     appName: 'Artiyaar',
     apiUrl: 'https://artiyaar.onrender.com',
     categories: [
-      'Menuiserie',
-      'Couture',
-      'Soudure',
-      'Mécanique',
-      'Maçonnerie',
-      'Électricité',
-      'Plomberie',
-      'Coiffure',
-      'Restauration',
-      'Autre'
+      "Boulangerie", "Boucherie", "Couture", "Coiffure", "Mécanique",
+      "Menuiserie", "Soudure", "Plomberie", "Électricité", "Maçonnerie",
+      "Peinture", "Réparation", "Cordonnerie", "Tailleur", "Forgeron",
+      "Tapisserie", "Maroquinerie", "Poterie", "Joaillerie", "Autre"
     ]
   },
 

@@ -161,10 +161,10 @@ class BusinessBase(BaseModel):
         if v is not None:
             if len(v) > 3:
                 raise ValueError('Maximum 3 URLs d\'images autorisées')
-            # Valider que chaque URL est une URL valide
+            # Valider les URLs HTTP/HTTPS, ou accepter les chemins relatifs (/uploads/) et les Base64 (data:image/)
             url_pattern = r'^https?://[^\s/$.?#].[^\s]*$'
             for url in v:
-                if not re.match(url_pattern, url):
+                if not (re.match(url_pattern, url) or url.startswith("/uploads/") or url.startswith("data:image/") or url.startswith("img/")):
                     raise ValueError(f'URL d\'image invalide: {url}')
         return v
 

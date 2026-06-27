@@ -93,8 +93,9 @@ const Media = {
     this.photos.forEach((photo, index) => {
       const div = document.createElement('div');
       div.className = 'preview-item';
+      const imgSrc = window.App ? window.App.getImageUrl(photo) : photo;
       div.innerHTML = `
-        <img src="${photo}" alt="Preview">
+        <img src="${imgSrc}" alt="Preview">
         <button type="button" class="remove-preview" onclick="Media.removePhoto(${index})">
           <i class="fas fa-times"></i>
         </button>
