@@ -151,12 +151,39 @@ const AuthUI = {
       errorEl.classList.add('visible');
     }
   },
-  forgotPassword(event) {
+  async forgotPassword(event) {
     event.preventDefault();
-    // Simulate reset password flow
-    const email = prompt("Entrez votre adresse email pour réinitialiser votre mot de passe:");
-    if (email) {
-      alert("Un lien de réinitialisation a été envoyé (simulation).");
+    const email = prompt("Entrez votre adresse email pour réinitialiser votre mot de passe :");
+    if (!email) return;
+    
+    try {
+      // 1. Demander la question secrète associée au compte
+      const res = await window.App.api("/api/auth/reset-password-request", {
+        method: "POST",
+        body: JSON.stringify({ email })
+      });
+      
+      // 2. Demander la réponse
+      const answer = prompt(`Question de sécurité : ${res.reset_question}\nEntrez votre réponse (ex: Dakar) :`);
+      if (!answer) return;
+      
+      // 3. Demander le nouveau mot de passe
+      const newPassword = prompt("Entrez votre nouveau mot de passe (min 8 caractères, 1 majuscule, 1 minuscule, 1 chiffre) :");
+      if (!newPassword) return;
+      
+      // 4. Envoyer les données pour réinitialisation
+      await window.App.api("/api/auth/reset-password", {
+        method: "POST",
+        body: JSON.stringify({
+          email: email,
+          reset_answer: answer,
+          new_password: newPassword
+        })
+      });
+      
+      alert("Votre mot de passe a été réinitialisé avec succès ! Vous pouvez maintenant vous connecter.");
+    } catch (e) {
+      alert("Erreur de réinitialisation : " + e.message);
     }
   }
 };
