@@ -10,6 +10,9 @@ __pycache__/
 # Base de données locales de développement et test
 *.db
 
+# Photos uploadées
+uploads/
+
 # Variables d'environnement (contient les secrets)
 .env
 

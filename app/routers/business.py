@@ -1,8 +1,10 @@
 import urllib.parse
 import io
+import os
+import uuid
 from typing import List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, UploadFile, File, status
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 
@@ -371,4 +373,89 @@ def export_offline_data(db: Session = Depends(get_db)):
         "version": "1.0",
         "total_businesses": len(result),
         "data": result,
+    }
+
+
+# ======================================================================
+# RF-05 : UPLOAD DE 1 À 3 PHOTOS DE VITRINE
+# ======================================================================
+UPLOAD_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    "uploads",
+)
+# Créer le dossier uploads s'il n'existe pas
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
+MAX_PHOTOS = 3
+
+
+@router.post("/{business_id}/upload-photo")
+def upload_business_photo(
+    business_id: int,
+    photo: UploadFile = File(..., description="Image JPG, PNG ou WebP (max 5 Mo)"),
+    db: Session = Depends(get_db),
+    current_artisan: models.User = Depends(get_current_artisan),
+):
+    """
+    Téléverser une photo de vitrine pour un commerce.
+    Un commerce peut avoir au maximum 3 photos.
+    Formats acceptés : JPG, PNG, WebP.
+    """
+    # Vérifier que le commerce existe et appartient à l'artisan
+    db_business = crud.get_business(db=db, business_id=business_id)
+    if not db_business:
+        raise HTTPException(
+            status_code=404, detail="Commerce introuvable."
+        )
+    if db_business.owner_id != current_artisan.id:
+        raise HTTPException(
+            status_code=403,
+            detail="Vous n'êtes pas autorisé à modifier ce commerce.",
+        )
+
+    # Vérifier le nombre de photos existantes
+    current_urls = db_business.image_urls or []
+    if len(current_urls) >= MAX_PHOTOS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Ce commerce a déjà {MAX_PHOTOS} photos. Supprimez-en une avant d'en ajouter.",
+        )
+
+    # Vérifier l'extension du fichier
+    ext = os.path.splitext(photo.filename)[1].lower()
+    if ext not in ALLOWED_EXTENSIONS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Format non supporté ({ext}). Formats acceptés : JPG, PNG, WebP.",
+        )
+
+    # Générer un nom de fichier unique pour éviter les collisions
+    unique_name = f"{uuid.uuid4().hex}{ext}"
+    file_path = os.path.join(UPLOAD_DIR, unique_name)
+
+    # Sauvegarder le fichier sur le disque
+    with open(file_path, "wb") as f:
+        content = photo.file.read()
+        # Vérifier la taille (max 5 Mo)
+        if len(content) > 5 * 1024 * 1024:
+            raise HTTPException(
+                status_code=400,
+                detail="La photo dépasse la taille maximale de 5 Mo.",
+            )
+        f.write(content)
+
+    # Construire l'URL publique du fichier
+    photo_url = f"/uploads/{unique_name}"
+
+    # Mettre à jour la liste des images du commerce
+    updated_urls = current_urls + [photo_url]
+    db_business.image_urls = updated_urls
+    db.commit()
+    db.refresh(db_business)
+
+    return {
+        "message": f"Photo téléversée avec succès ({len(updated_urls)}/{MAX_PHOTOS}).",
+        "photo_url": photo_url,
+        "all_photos": updated_urls,
     }
