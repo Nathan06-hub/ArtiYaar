@@ -199,7 +199,7 @@ const SearchUI = {
     let html = '';
     this.filteredArtisans.forEach((artisan, index) => {
       const cover = artisan.photos && artisan.photos.length > 0
-        ? artisan.photos[0]
+        ? window.App.getImageUrl(artisan.photos[0])
         : null;
 
       let distanceHtml = '';

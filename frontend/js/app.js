@@ -194,6 +194,17 @@ const App = {
     for(let i=0; i<emptyStars; i++) html += '<i class="far fa-star"></i>';
     
     return html;
+  },
+
+  /**
+   * Format and sanitize image URLs (supports base64, absolute and relative backend urls)
+   */
+  getImageUrl(url) {
+    if (!url) return 'data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100%" height="200" viewBox="0 0 100 100" preserveAspectRatio="none"%3E%3Crect width="100" height="100" fill="%2322263C" /%3E%3Ctext x="50" y="50" fill="%23B0B3C6" font-family="sans-serif" font-size="10" text-anchor="middle" alignment-baseline="middle"%3EPas de photo%3C/text%3E%3C/svg%3E';
+    if (url.startsWith('data:') || url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    return `${this.config.apiUrl}${url.startsWith('/') ? '' : '/'}${url}`;
   }
 };
 

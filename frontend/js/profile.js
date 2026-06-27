@@ -68,12 +68,12 @@ const ProfileUI = {
       galleryHtml = `
         <div class="profile-gallery">
           <div class="gallery-main">
-            <img src="${a.photos[0]}" alt="${a.name}" id="gallery-main-img">
+            <img src="${window.App.getImageUrl(a.photos[0])}" alt="${a.name}" id="gallery-main-img">
           </div>
           ${a.photos.length > 1 ? `
             <div class="gallery-thumbs">
               ${a.photos.map((photo, i) => `
-                <img src="${photo}" alt="Photo ${i + 1}" 
+                <img src="${window.App.getImageUrl(photo)}" alt="Photo ${i + 1}" 
                      class="gallery-thumb ${i === 0 ? 'active' : ''}"
                      onclick="ProfileUI.switchPhoto(${i})">
               `).join('')}
@@ -160,7 +160,7 @@ const ProfileUI = {
     const thumbs = document.querySelectorAll('.gallery-thumb');
     
     if (this.artisan.photos[index]) {
-      mainImg.src = this.artisan.photos[index];
+      mainImg.src = window.App.getImageUrl(this.artisan.photos[index]);
       thumbs.forEach((t, i) => t.classList.toggle('active', i === index));
     }
   },
