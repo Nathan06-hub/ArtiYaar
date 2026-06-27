@@ -7,12 +7,14 @@ Ce projet s'inscrit dans le cadre du défi hackathon *"Le numérique au service 
 ---
 
 ## 👥 Informations du Groupe
-* **Nom du Groupe** : [À COMPLÉTER - Nom de votre équipe]
+* **Nom du Groupe** : [LogiCode]
 * **Membres & Coordonnées** :
-  - [À COMPLÉTER - Prénom Nom] - Développeur Backend / Lead ([email@example.com](mailto:email@example.com))
-  - [À COMPLÉTER - Prénom Nom] - Développeur Frontend ([email@example.com](mailto:email@example.com))
-  - [À COMPLÉTER - Prénom Nom] - Product Owner / QA ([email@example.com](mailto:email@example.com))
-
+  - [Stéphane Nathanaël MARE] - Développeur Backend  ([maresteph06@gmail.com](mailto:maresteph06@gmail.com))
+  - [Omaïmata OUEDRAOGO] - Développeur Frontend ([omaiodg@gmail.com](mailto:omaiodg@gmail.com))
+  - [Serge Landry WAONGO] - Developpeur Frontend/ Lead ([sergewaongolandry@gmail.com](mailto:sergewaongolandry@gmail.com))
+  - [Papus Aymerick KONATE] -  ([papuskonate74@gmail.com](mailto:papuskonate74@gmail.com))
+  - [Cedric NINkIEMA] - Desingner UI/UX ([alalande@gmail.com](mailto:alalande@gmail.com)) 
+    
 ---
 
 ## 🏗️ Architecture Technique et Choix Technologiques
